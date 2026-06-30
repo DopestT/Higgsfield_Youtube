@@ -6,13 +6,15 @@
   "bin": {
     "new-video": "bin/new-video.js",
     "trend-scan": "bin/trend-scan.js",
-    "trend-video": "bin/trend-video.js"
+    "trend-video": "bin/trend-video.js",
+    "generate-video": "bin/generate-video.js"
   },
   "scripts": {
     "new-video": "node bin/new-video.js",
     "trend-scan": "node bin/trend-scan.js",
     "trend-video": "node bin/trend-video.js",
-    "pitch-topics": "node bin/pitch-topics.js"
+    "pitch-topics": "node bin/pitch-topics.js",
+    "generate-video": "node bin/generate-video.js"
   },
   "engines": {
     "node": ">=16"
