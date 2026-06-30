@@ -180,7 +180,102 @@ Matching is category-substring or whole-word in the title/summary (so `"AI"` won
 
 ---
 
-## 6. Seven-day launch workflow
+## 6. Topic pitch layer — decide before you generate
+
+Before producing a video, the engine can pitch you on whether the topic deserves a slot.
+Every generated package also includes a `topic-pitch.md` file.
+
+### How topic pitching works
+
+The pitch layer sits between `trend-scan` and `trend-video`. It takes the scored trend items
+and builds a structured producer brief that answers: *why this topic, why today, and why this
+beats everything else in the scan?*
+
+Each pitch covers:
+1. Topic (source / category / date)
+2. One-line pitch
+3. Why now? (recency + cross-source signal analysis)
+4. Audience fit (primary and secondary audiences)
+5. Hook potential (3 opening hook options)
+6. Visual potential (what makes it strong in Higgsfield)
+7. Commentary angle (The Signal Desk's framing — find the pattern, not the summary)
+8. Risk notes (fact-check flags, legal/political/financial caution)
+9. Why this beats other topics today (score comparison)
+10. Score breakdown (all 8 signals exposed)
+11. Recommendation (Make this now / Save for later / Needs research first / Skip)
+12. Final creator decision prompt: **approve / revise / save / skip**
+
+### How to run pitch-topics
+
+```bash
+npm run pitch-topics
+```
+
+Loads the latest `trends/` scan, ranks the top 5 usable trends, and writes:
+
+```
+queue/YYYY-MM-DD-topic-pitches.md          ← daily brief (start here)
+queue/YYYY-MM-DD-topic-pitches/
+  rank-1-techcrunch.md                     ← full pitch for #1 candidate
+  rank-2-the-verge.md
+  rank-3-venturebeat-ai.md
+  ...
+```
+
+The brief is written like a producer pitching you what to make today — direct, strategic, not
+hype. It explains why each topic could get attention and why it fits The Signal Desk format.
+
+### How to approve / revise / save / skip
+
+The engine does not auto-approve. All decisions are yours. At the bottom of each pitch file:
+
+```
+Decision: approve / revise / save / skip?
+```
+
+Write your decision inline, or just proceed to generation:
+
+```bash
+# Generate the top trend (whatever the engine recommended)
+npm run trend-video
+
+# Generate the top trend in a specific category
+npm run trend-video -- "AI"
+npm run trend-video -- "creator economy"
+```
+
+### topic-pitch.md in every package
+
+Every output from `trend-video` (and `new-video`) now includes `topic-pitch.md` as the first
+file in the package. Open it before touching Higgsfield. It tells you:
+- Why this topic was selected
+- What the commentary angle is
+- What the risk level is
+- What the recommendation was
+- What your decision should be before generating
+
+### How this fits the 2-videos-per-day workflow
+
+```
+Daily routine:
+  npm run trend-scan          ← fetch what's happening (16 sources, 179+ items)
+  npm run pitch-topics        ← get pitched on the top 5 usable trends
+  (read queue/YYYY-MM-DD-topic-pitches.md)
+  (pick 2 candidates, mark approve)
+  npm run trend-video         ← generate package for top approved topic
+  npm run trend-video -- "X"  ← generate package for second pick by category
+  (review topic-pitch.md in each output folder)
+  (produce in Higgsfield)
+  (post)
+```
+
+The pitch layer adds ~2 minutes of reading time. It saves you from producing a topic that
+looks good on score but has a risk flag, a weak commentary angle, or a better competitor you
+didn't notice.
+
+---
+
+## 7. Seven-day launch workflow
 
 - **Day 1 — Setup.** Install, fill `inputs/references.md`, copy `placeholder-brand.md` to a
   real brand kit, lock accent color + caption style.
@@ -192,7 +287,7 @@ Matching is category-substring or whole-word in the title/summary (so `"AI"` won
 - **Day 7 — Measure.** Log results in `analytics/performance-log.csv`; keep the winner's
   format, kill the rest, queue next batch.
 
-## 7. Quality checklist before posting
+## 8. Quality checklist before posting
 
 - [ ] Hook lands a question/visual in the first 1–2s (no intro fluff).
 - [ ] Total length 30–60s; each scene 4–7s; 5–8 scenes.
@@ -205,7 +300,7 @@ Matching is category-substring or whole-word in the title/summary (so `"AI"` won
 - [ ] Title, description, 5 hashtags, thumbnail set per platform.
 - [ ] No copied IP, characters, scripts, or art.
 
-## 8. Safety checklist for trend-based videos
+## 9. Safety checklist for trend-based videos
 
 Run this in addition to the checklist above for anything from `trend-video`:
 

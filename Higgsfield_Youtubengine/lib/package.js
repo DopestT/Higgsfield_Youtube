@@ -10,6 +10,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const pitch = require('./pitch');
 
 const DEFAULTS = {
   aspectRatio: '9:16',
@@ -353,6 +354,29 @@ function captionsSRT(ctx) {
   return lines.join('\n');
 }
 
+function topicPitchMD(ctx) {
+  // Build a pitch item from the ctx object so pitch.buildPitchMD works
+  // for both trend-video (has full item) and new-video (generic) packages.
+  const item = ctx._trendItem || {
+    title: ctx.title,
+    source: (ctx.source && ctx.source.name) || 'manual',
+    category: ctx.topicLabel || 'general',
+    published: ctx.date,
+    link: (ctx.source && ctx.source.link) || null,
+    suggested_hook: ctx.altHooks && ctx.altHooks[0],
+    suggested_angle: ctx.logline || ctx.idea,
+    visual_metaphor: null,
+    risk_notes: ctx.riskNotes || null,
+    needs_human_review: !!ctx.needsReview,
+    trend_score: ctx.trendScore || 0,
+    usable_for_video: true,
+    signals: ctx._signals || {},
+  };
+  const allItems = ctx._allItems || [item];
+  const rank = ctx._rank || 1;
+  return pitch.buildPitchMD(item, allItems, rank);
+}
+
 function metadataJSON(ctx) {
   return JSON.stringify(
     {
@@ -382,8 +406,9 @@ function metadataJSON(ctx) {
         camera: s.camera, motion: s.motion, lighting: s.lighting, voiceover: s.voiceover,
       })),
       assets: {
-        concept: 'concept.md', script: 'script.md', voiceover: 'voiceover.md',
-        scenes: 'scenes.md', image_prompts: 'higgsfield-image-prompts.md',
+        topic_pitch: 'topic-pitch.md', concept: 'concept.md', script: 'script.md',
+        voiceover: 'voiceover.md', scenes: 'scenes.md',
+        image_prompts: 'higgsfield-image-prompts.md',
         video_prompts: 'higgsfield-video-prompts.md', captions: 'captions.srt',
         thumbnail: 'thumbnail.md', social: 'social-posts.md',
       },
@@ -402,6 +427,7 @@ function writePackage(outputsDir, ctx) {
   const outDir = uniqueDir(path.join(outputsDir, `${ctx.date}-${ctx.slug}`));
   fs.mkdirSync(outDir, { recursive: true });
   const files = {
+    'topic-pitch.md': topicPitchMD(ctx),
     'concept.md': conceptMD(ctx),
     'script.md': scriptMD(ctx),
     'voiceover.md': voiceoverMD(ctx),

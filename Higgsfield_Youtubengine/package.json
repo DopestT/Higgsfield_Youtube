@@ -11,7 +11,8 @@
   "scripts": {
     "new-video": "node bin/new-video.js",
     "trend-scan": "node bin/trend-scan.js",
-    "trend-video": "node bin/trend-video.js"
+    "trend-video": "node bin/trend-video.js",
+    "pitch-topics": "node bin/pitch-topics.js"
   },
   "engines": {
     "node": ">=16"

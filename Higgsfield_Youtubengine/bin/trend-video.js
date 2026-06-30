@@ -110,6 +110,11 @@ async function main() {
     needsReview: item.needs_human_review,
     trendScore: item.trend_score,
     generatedBy: 'Higgsfield_Youtubengine/trend-video',
+    // Pitch layer — passes full item context for topic-pitch.md generation
+    _trendItem: item,
+    _allItems: pool,
+    _rank: 1,
+    _signals: item.signals || {},
   });
 
   const { outDir, files } = pkg.writePackage(path.join(ROOT, 'outputs'), ctx);
