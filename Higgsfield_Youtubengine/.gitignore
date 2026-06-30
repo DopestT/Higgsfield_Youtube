@@ -5,3 +5,7 @@ npm-debug.log*
 # One sample run is force-committed as a reference example.
 outputs/*
 !outputs/.gitkeep
+
+# Trend scans are local, time-sensitive artifacts.
+trends/*
+!trends/.gitkeep

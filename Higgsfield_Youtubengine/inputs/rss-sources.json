@@ -1,0 +1,27 @@
+{
+  "_comment": "Edit freely. Add/remove sources, flip enabled, tune weight (0.0-1.0 = how much to trust this source). feed_url should be a normal RSS or Atom feed. trend-scan.js reads this file (override path with HF_RSS_SOURCES).",
+  "sources": [
+    { "name": "TechCrunch", "category": "AI / Tech", "feed_url": "https://techcrunch.com/feed/", "weight": 0.9, "enabled": true },
+    { "name": "The Verge", "category": "AI / Tech", "feed_url": "https://www.theverge.com/rss/index.xml", "weight": 0.85, "enabled": true },
+    { "name": "Ars Technica", "category": "AI / Tech", "feed_url": "https://feeds.arstechnica.com/arstechnica/index", "weight": 0.8, "enabled": true },
+    { "name": "VentureBeat AI", "category": "AI / Tech", "feed_url": "https://venturebeat.com/category/ai/feed/", "weight": 0.75, "enabled": true },
+
+    { "name": "Tubefilter", "category": "Creator economy", "feed_url": "https://www.tubefilter.com/feed/", "weight": 0.8, "enabled": true },
+    { "name": "Social Media Today", "category": "Creator economy", "feed_url": "https://www.socialmediatoday.com/feeds/news/", "weight": 0.7, "enabled": true },
+
+    { "name": "Engadget", "category": "YouTube / social platforms", "feed_url": "https://www.engadget.com/rss.xml", "weight": 0.7, "enabled": true },
+    { "name": "TechCrunch Social", "category": "YouTube / social platforms", "feed_url": "https://techcrunch.com/category/social/feed/", "weight": 0.75, "enabled": true },
+
+    { "name": "CoinDesk", "category": "Crypto / markets", "feed_url": "https://www.coindesk.com/arc/outboundfeeds/rss/", "weight": 0.7, "enabled": true },
+    { "name": "Cointelegraph", "category": "Crypto / markets", "feed_url": "https://cointelegraph.com/rss", "weight": 0.6, "enabled": true },
+
+    { "name": "NPR Politics", "category": "Politics / power", "feed_url": "https://feeds.npr.org/1014/rss.xml", "weight": 0.7, "enabled": true },
+    { "name": "The Hill", "category": "Politics / power", "feed_url": "https://thehill.com/news/feed/", "weight": 0.6, "enabled": true },
+
+    { "name": "TechCrunch Startups", "category": "Business / startups", "feed_url": "https://techcrunch.com/category/startups/feed/", "weight": 0.85, "enabled": true },
+    { "name": "Hacker News Front Page", "category": "Business / startups", "feed_url": "https://hnrss.org/frontpage", "weight": 0.7, "enabled": true },
+
+    { "name": "Mashable", "category": "Culture / internet", "feed_url": "https://mashable.com/feeds/rss/all", "weight": 0.65, "enabled": true },
+    { "name": "Polygon", "category": "Culture / internet", "feed_url": "https://www.polygon.com/rss/index.xml", "weight": 0.6, "enabled": true }
+  ]
+}

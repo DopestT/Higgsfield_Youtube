@@ -41,23 +41,50 @@ npm install            # nothing to install yet, but sets the project up
 ## Usage
 
 ```bash
+# Generic idea → full package
 npm run new-video "a houseplant that thinks it can rule the world"
+
+# Scan RSS feeds for what's trending → scored brief + data
+npm run trend-scan
+
+# Turn the top trend into a full package
+npm run trend-video
+
+# Turn the top trend matching a keyword/category into a package
+npm run trend-video -- "AI"
+npm run trend-video -- "creator economy"
+npm run trend-video -- "crypto"
 ```
 
-This creates `outputs/YYYY-MM-DD-a-houseplant-that-thinks-it-can-rule-the-world/` with all
-files listed above. Re-running the same idea on the same day creates `-2`, `-3`, … so
-nothing is overwritten.
+`new-video` creates `outputs/YYYY-MM-DD-<slug>/` with all files listed above. Re-running the
+same idea on the same day creates `-2`, `-3`, … so nothing is overwritten.
+
+### Optional: Claude-written copy
+By default the copy is generated from deterministic templates (no API key needed). To have
+**Claude** write the hook, script, titles, etc., set an API key and pass `--ai` (or
+`HF_AI=1`):
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+npm run new-video -- --ai "AI is making one-person content studios possible"
+npm run trend-video -- --ai "AI"
+```
+
+If the key is missing or the call fails, it silently falls back to templates. Model defaults
+to `claude-opus-4-8` (override with `HF_MODEL`).
 
 Project layout:
 
 ```
 Higgsfield_Youtubengine/
-  inputs/        ideas.txt, references.md
+  inputs/        ideas.txt, references.md, rss-sources.json
   outputs/       generated YYYY-MM-DD-slug/ packages
+  trends/        generated YYYY-MM-DD-trend-scan.json + -trend-brief.md
   templates/     editable templates + metadata schema
   brand-kits/    placeholder-brand.md (copy per channel)
   analytics/     performance-log.csv
-  bin/           new-video.js (the generator)
+  bin/           new-video.js, trend-scan.js, trend-video.js
+  lib/           package.js (shared engine), trends.js (RSS+scoring), llm.js (optional Claude)
 ```
 
 ---
@@ -100,7 +127,60 @@ fields, so an automated renderer just iterates it.
 
 ---
 
-## 5. Seven-day launch workflow
+## 5. RSS trend research layer
+
+Move packages closer to what's actually trending. Three pieces:
+
+### How it works
+1. **`inputs/rss-sources.json`** lists RSS/Atom feeds grouped by category.
+2. **`npm run trend-scan`** fetches the enabled feeds, parses recent items, scores each, and
+   writes `trends/YYYY-MM-DD-trend-scan.json` (full data) + `trends/YYYY-MM-DD-trend-brief.md`
+   (human brief grouped by category).
+3. **`npm run trend-video`** loads the latest scan, picks a trend, and writes a full
+   production package to `outputs/` — seeded by the trend (angle, hook, visual metaphor, risk
+   notes), not a generic idea.
+
+### Editing `inputs/rss-sources.json`
+Each source has `name`, `category`, `feed_url`, `weight` (0.0–1.0, how much to trust it), and
+`enabled` (true/false). Add/remove freely, flip `enabled`, tune `weight`. Categories seeded:
+AI / Tech, Creator economy, YouTube / social platforms, Crypto / markets, Politics / power,
+Business / startups, Culture / internet. Point at a different file with `HF_RSS_SOURCES=path`.
+
+### How items are scored
+Each item gets a `trend_score` (0–100) from: recency, source weight, repeated keywords across
+feeds, emotional intensity, creator relevance, visual potential, Shorts hook potential, and
+business/tech relevance. It also gets `suggested_angle`, `suggested_hook`, `visual_metaphor`,
+`risk_notes`, and `usable_for_video`.
+
+### Manual keyword / category override
+```bash
+npm run trend-video -- "AI"               # highest-scoring usable trend matching the category/word
+npm run trend-video -- "creator economy"
+npm run trend-video -- "crypto"
+```
+Matching is category-substring or whole-word in the title/summary (so `"AI"` won't match
+*available*). With no argument, it picks the top usable trend overall.
+
+### Limitations
+- **Network required.** `trend-scan` needs outbound HTTPS to the feed hosts. Restricted
+  networks/sandboxes may block some domains — failed sources are reported, not fatal.
+- **Feeds drift.** Publishers change or remove RSS URLs; prune/replace in `rss-sources.json`.
+- **Scoring is heuristic**, keyword-based — a strong signal, not editorial judgment. Read the
+  brief before producing.
+- **No rendering or uploading** — this layer only identifies trends and builds the package.
+- **Recency depends on feed dates;** items without a parseable date score lower on recency.
+
+### Editorial rules (built in)
+- Items are **signals, not source text** — never copy article wording; summaries are truncated
+  snippets for context only.
+- Don't claim facts beyond what the item supports; favor explainers, commentary, and visual
+  arguments over posing as a news authority.
+- Political, legal, medical, financial, or breaking-news topics are auto-flagged with a
+  `risk_notes` field and `needs_human_review: true` in the package.
+
+---
+
+## 6. Seven-day launch workflow
 
 - **Day 1 — Setup.** Install, fill `inputs/references.md`, copy `placeholder-brand.md` to a
   real brand kit, lock accent color + caption style.
@@ -112,7 +192,7 @@ fields, so an automated renderer just iterates it.
 - **Day 7 — Measure.** Log results in `analytics/performance-log.csv`; keep the winner's
   format, kill the rest, queue next batch.
 
-## 6. Quality checklist before posting
+## 7. Quality checklist before posting
 
 - [ ] Hook lands a question/visual in the first 1–2s (no intro fluff).
 - [ ] Total length 30–60s; each scene 4–7s; 5–8 scenes.
@@ -124,4 +204,17 @@ fields, so an automated renderer just iterates it.
 - [ ] Ends on the signature stamp + CTA.
 - [ ] Title, description, 5 hashtags, thumbnail set per platform.
 - [ ] No copied IP, characters, scripts, or art.
-```
+
+## 8. Safety checklist for trend-based videos
+
+Run this in addition to the checklist above for anything from `trend-video`:
+
+- [ ] Read the original item — the package is an **angle**, not a report. Don't restate the
+      article; say something about it.
+- [ ] No claimed facts beyond the headline/snippet. No fabricated stats, quotes, or numbers.
+- [ ] If `needs_human_review` is true (political/legal/medical/financial/breaking), a human
+      verifies every claim against the source **before** posting.
+- [ ] No financial / medical / legal advice. Frame as commentary or explainer.
+- [ ] Tone is commentary/explainer, not "breaking news authority."
+- [ ] Nothing defamatory about named people or companies; opinions are clearly opinions.
+- [ ] Topic is still timely (trends decay fast — check the item's date).

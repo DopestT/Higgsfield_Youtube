@@ -4,10 +4,14 @@
   "description": "Repeatable YouTube Shorts production engine: one idea in, a full Higgsfield-ready production package out.",
   "private": true,
   "bin": {
-    "new-video": "bin/new-video.js"
+    "new-video": "bin/new-video.js",
+    "trend-scan": "bin/trend-scan.js",
+    "trend-video": "bin/trend-video.js"
   },
   "scripts": {
-    "new-video": "node bin/new-video.js"
+    "new-video": "node bin/new-video.js",
+    "trend-scan": "node bin/trend-scan.js",
+    "trend-video": "node bin/trend-video.js"
   },
   "engines": {
     "node": ">=16"
