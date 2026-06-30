@@ -1,0 +1,16 @@
+{
+  "name": "higgsfield-youtubengine",
+  "version": "0.1.0",
+  "description": "Repeatable YouTube Shorts production engine: one idea in, a full Higgsfield-ready production package out.",
+  "private": true,
+  "bin": {
+    "new-video": "bin/new-video.js"
+  },
+  "scripts": {
+    "new-video": "node bin/new-video.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT"
+}

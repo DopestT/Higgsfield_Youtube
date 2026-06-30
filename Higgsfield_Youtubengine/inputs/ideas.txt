@@ -1,0 +1,9 @@
+# One video idea per line. Run any of these with:
+#   npm run new-video "the idea text"
+# Lines starting with # are ignored.
+
+a houseplant that thinks it can rule the world
+a cat convinced it is an apex predator
+the last honest person in a city of liars
+a tiny robot learning to paint its first picture
+why the ocean is darker than you think

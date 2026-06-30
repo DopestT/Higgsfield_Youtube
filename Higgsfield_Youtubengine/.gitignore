@@ -1,0 +1,7 @@
+node_modules/
+npm-debug.log*
+
+# Generated production packages are local artifacts.
+# One sample run is force-committed as a reference example.
+outputs/*
+!outputs/.gitkeep
