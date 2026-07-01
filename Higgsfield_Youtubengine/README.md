@@ -198,7 +198,7 @@ Each pitch covers:
 4. Audience fit (primary and secondary audiences)
 5. Hook potential (3 opening hook options)
 6. Visual potential (what makes it strong in Higgsfield)
-7. Commentary angle (The Signal Desk's framing — find the pattern, not the summary)
+7. Commentary angle (I Swear I'm Not Crazy's framing — find the pattern, not the summary)
 8. Risk notes (fact-check flags, legal/political/financial caution)
 9. Why this beats other topics today (score comparison)
 10. Score breakdown (all 8 signals exposed)
@@ -222,8 +222,9 @@ queue/YYYY-MM-DD-topic-pitches/
   ...
 ```
 
-The brief is written like a producer pitching you what to make today — direct, strategic, not
-hype. It explains why each topic could get attention and why it fits The Signal Desk format.
+The brief is written like a producer pitching you what to make today — vindication-forward,
+sharp, grounded, not hype. It explains why each topic could get attention and why it fits
+the I Swear I'm Not Crazy format.
 
 ### How to approve / revise / save / skip
 

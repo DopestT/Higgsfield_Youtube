@@ -20,7 +20,7 @@ const AUDIENCE_MAP = {
   'Culture / internet': ['gen-z and millennial general audience', 'internet culture followers', 'creators building personal brands', 'marketers tracking trends'],
 };
 
-// Commentary angles by category — what The Signal Desk's stance is
+// Commentary angles by category — what I Swear I'm Not Crazy's stance is
 const COMMENTARY_ANGLES = {
   'AI / Tech': 'The pattern to find: is this a genuine capability leap, or a rebrand of existing tech? What does it mean for creators and builders right now?',
   'Creator economy': 'The pattern: platform power shifts. Who benefits, who gets squeezed, and what should creators do about it today — not next year.',
@@ -296,8 +296,8 @@ function buildDailyBriefMD(date, items, pitches) {
   let md = `# Topic Pitches — ${date}
 
 > Produced by Higgsfield_Youtubengine / pitch-topics  
-> Format: The Signal Desk — 2 videos per day, cinematic, fast, commentary-led  
-> Tone: direct, strategic, not hype
+> Format: I Swear I'm Not Crazy — 2 videos per day, cinematic, fast, commentary-led
+> Tone: vindication-forward, sharp, contrarian-but-right, grounded (never unhinged)
 
 ---
 
