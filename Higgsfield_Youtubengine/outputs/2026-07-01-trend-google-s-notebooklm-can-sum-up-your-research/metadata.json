@@ -1,0 +1,126 @@
+{
+  "slug": "trend-google-s-notebooklm-can-sum-up-your-research",
+  "date": "2026-07-01",
+  "idea": "A fast, original explainer/commentary on what \"Google’s NotebookLM can sum up your research in a TikTok-style clip\" really signals for ai / tech — no hype, no copying the article, just the clear takeaway and why it matters.",
+  "topic_label": "AI / Tech",
+  "source": {
+    "name": "The Verge",
+    "category": "AI / Tech",
+    "link": "https://www.theverge.com/tech/959778/google-notebooklm-ai-clips"
+  },
+  "title_options": [
+    "Google’s NotebookLM can sum up your research in a TikTok-style clip — what actually matters",
+    "The real story behind \"Google’s NotebookLM can sum up your rese\"",
+    "AI / Tech: the 30-second version",
+    "Why everyone's about to talk about this",
+    "Google’s NotebookLM can sum up your research in a  — explained fast"
+  ],
+  "primary_title": "Google’s NotebookLM can sum up your research in a TikTok-style clip — what actually matters",
+  "description": "A fast, original explainer on a trending ai / tech story: Google’s NotebookLM can sum up your research in a TikTok-style clip. Commentary and context, not a news report. Follow for the trends that actually matter.",
+  "hashtags": [
+    "#shorts",
+    "#trending",
+    "#ai",
+    "#explained",
+    "#fyp"
+  ],
+  "format": {
+    "aspect_ratio": "9:16",
+    "target_seconds": 36,
+    "scene_count": 6,
+    "seconds_per_scene_range": "4-7"
+  },
+  "platforms": [
+    "YouTube Shorts",
+    "TikTok",
+    "Instagram Reels",
+    "X"
+  ],
+  "tone": "cinematic, fast, clear, high-retention",
+  "style": "cinematic, high-contrast, shallow depth of field, filmic color grade",
+  "trend_score": 69,
+  "risk_notes": "NEEDS HUMAN REVIEW before posting. This topic is political/legal/financial/medical or breaking-news adjacent. Do not state facts beyond the headline, do not give financial/medical/legal advice, frame as commentary/explainer, and verify claims against the source.",
+  "needs_human_review": true,
+  "scenes": [
+    {
+      "n": 1,
+      "beat": "HOOK",
+      "start": 0,
+      "end": 6,
+      "duration": 6,
+      "camera": "low-angle hero shot",
+      "motion": "slow dolly-in, subtle parallax",
+      "lighting": "dramatic rim light, dark background",
+      "voiceover": "Here's the 30-second version nobody's explaining clearly."
+    },
+    {
+      "n": 2,
+      "beat": "SETUP",
+      "start": 6,
+      "end": 12,
+      "duration": 6,
+      "camera": "slow push-in (dolly)",
+      "motion": "smooth orbit around subject",
+      "lighting": "soft golden-hour key light",
+      "voiceover": "Here's the actual story, fast: Google’s NotebookLM can sum up your research in a TikTok-style clip."
+    },
+    {
+      "n": 3,
+      "beat": "ESCALATION",
+      "start": 12,
+      "end": 18,
+      "duration": 6,
+      "camera": "over-the-shoulder medium",
+      "motion": "handheld micro-shake for energy",
+      "lighting": "cool blue moody backlight",
+      "voiceover": "And it's moving quicker than people realize."
+    },
+    {
+      "n": 4,
+      "beat": "TURN",
+      "start": 18,
+      "end": 24,
+      "duration": 6,
+      "camera": "top-down birds-eye",
+      "motion": "rapid push then settle",
+      "lighting": "high-key bright and clean",
+      "voiceover": "But here's the part that actually matters."
+    },
+    {
+      "n": 5,
+      "beat": "PAYOFF",
+      "start": 24,
+      "end": 30,
+      "duration": 6,
+      "camera": "tracking side profile",
+      "motion": "crane up reveal",
+      "lighting": "neon practical lights, teal/magenta",
+      "voiceover": "That's the takeaway — the thing to remember."
+    },
+    {
+      "n": 6,
+      "beat": "BUTTON",
+      "start": 30,
+      "end": 36,
+      "duration": 6,
+      "camera": "close-up on face/detail",
+      "motion": "whip-pan transition out",
+      "lighting": "single hard spotlight, deep shadows",
+      "voiceover": "Follow for the trends that actually matter — explained fast."
+    }
+  ],
+  "assets": {
+    "topic_pitch": "topic-pitch.md",
+    "concept": "concept.md",
+    "script": "script.md",
+    "voiceover": "voiceover.md",
+    "scenes": "scenes.md",
+    "image_prompts": "higgsfield-image-prompts.md",
+    "video_prompts": "higgsfield-video-prompts.md",
+    "captions": "captions.srt",
+    "thumbnail": "thumbnail.md",
+    "social": "social-posts.md"
+  },
+  "status": "draft",
+  "generated_by": "Higgsfield_Youtubengine/trend-video"
+}
